@@ -12,7 +12,7 @@ const Register = () => {
 
             <InputsCon>
                 <InpCon>
-                    <Text>Email Address</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Email Address</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -22,7 +22,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Password</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Password</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -33,7 +33,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>NIP/NRP</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>NIP/NRP</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -43,7 +43,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Nama Lengkap</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Nama Lengkap</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -53,7 +53,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Pangkat</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Pangkat</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -63,7 +63,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Tempat Lahir</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Tempat Lahir</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -73,7 +73,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Tanggal Lahir</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Tanggal Lahir</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -83,7 +83,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Jenis Kelamin</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Jenis Kelamin</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -93,7 +93,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>No.Hp</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>No.Hp</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -103,7 +103,7 @@ const Register = () => {
                 </InpCon>
 
                 <InpCon>
-                    <Text>Satker</Text>
+                    <Text style={{textAlign:'left', width:'90%'}}>Satker</Text>
                     <Input 
                         borderRadius={10}
                         borderColor='#ccc9c9'
@@ -153,6 +153,8 @@ const InputsCon = styled.View`
 
 const InpCon = styled.View`
     display: flex;
+    align-items: center;
+    width: 100%;
 `
 
 const ButtonCon = styled.View`

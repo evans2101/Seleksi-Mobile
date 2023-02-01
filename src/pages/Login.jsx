@@ -11,6 +11,7 @@ const Login = () => {
     <Container>
       <Image 
         source={require('../../assets/banner.png')}
+        style={{ height: '50%', width: '90%'}}
         resizeMode='cover'
       />
       <Title>Login</Title>
@@ -48,19 +49,28 @@ const Login = () => {
         </Checkbox.Group>
       </View>
 
+    <View style={{display:'flex', alignItems:'center'}}>
       <ButtonCon>
           <Button 
             text='Login' 
             color='#0386D0' 
             outline={true} 
-            width='50%' height='35px'
+            width='50%' height='40px'
+            marginRight='10px'
+          />
+          <Button 
+            text='Register' 
+            color='#0386D0' 
+            width='50%' height='40px'
+            textColor='#fff'
           />
       </ButtonCon>
+    </View>
 
-      <Text style={{textAlign:'right', marginRight:20, marginTop:15}}>
+      {/* <Text style={{textAlign:'right', marginRight:20, marginTop:15}}>
         Don't have an account? 
         <Text style={{color:'purple'}}> Sign Up</Text>
-      </Text>
+      </Text> */}
 
     </Container>
   )
@@ -69,7 +79,7 @@ const Login = () => {
 const Container = styled.View`
     display: flex;
     justify-content: center;
-    margin: 40px 0;
+    margin: 100px 0;
     /* background-color: green; */
 `
 
@@ -94,7 +104,9 @@ const ButtonCon = styled.View`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 8px 0;
+    margin: 20px 0 ;
+    /* background-color: red; */
+    width: 90%;
 `
 
 export default Login
