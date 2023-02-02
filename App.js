@@ -11,8 +11,8 @@ export default function App() {
     <NativeBaseProvider>
       <Container back={'white'}>
         {/* <StatusBar style="auto" /> */}
-        <Login />
-        {/* <Register /> */}
+        {/* <Login /> */}
+        <Register />
         {/* <Information /> */}
       </Container>
     </NativeBaseProvider>
