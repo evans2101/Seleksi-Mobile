@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider } from "native-base";
 import styled from 'styled-components/native'
-import Login from './src/pages/Login';
-import Register from './src/pages/Register';
-import Information from './src/pages/Information';
+
+import Routes from './src/navigation/Routes';
+import BottomTabs from './src/navigation/BottomTabs';
+import Navigation from './src/navigation/Navigation';
+import { useState } from 'react';
 
 export default function App() {
+  const [routes, setRoutes] = useState('Loginn')
   return (
     <NativeBaseProvider>
-      <Container back={'white'}>
-        {/* <StatusBar style="auto" /> */}
-        {/* <Login /> */}
-        <Register />
-        {/* <Information /> */}
-      </Container>
+      <NavigationContainer>
+        <Container back={'white'}>
+          {/* <StatusBar style="auto" /> */}
+          {/* <Routes routes={routes} setRoutes={setRoutes} /> */}
+          {/* <BottomTabs /> */}
+
+          <Navigation routes={routes} />
+        </Container>
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }

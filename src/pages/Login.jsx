@@ -5,7 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import styled from 'styled-components/native'
 import Button from '../components/Button';
 
-const Login = () => {
+const Login = ({navigation}) => {
     const [show, setShow] = useState(false)
   return (
     <Container>
@@ -15,7 +15,9 @@ const Login = () => {
         resizeMode='cover'
       />
       <Title>Login</Title>
-      <View style={{textAlign: 'center', paddingButtom: '30px'}}>Selamat Datang di E-Seleksi Polda Riau</View>
+      <View style={{textAlign: 'center', paddingButtom: '30px'}}>
+        <Text>Selamat Datang di E-Seleksi Polda Riau</Text> 
+      </View>
       <InputCon>
         <Input 
             borderRadius={10}
@@ -64,6 +66,7 @@ const Login = () => {
             color='#0386D0' 
             width='50%' height='40px'
             textColor='#fff'
+            onPress={() => navigation.navigate('register')}
           />
       </ButtonCon>
     </View>

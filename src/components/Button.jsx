@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
 const Button = ({text, color, outline, textColor, ...rest}) => {
@@ -9,7 +9,7 @@ const Button = ({text, color, outline, textColor, ...rest}) => {
   )
 }
 
-const Buttons = styled.View`
+const Buttons = styled.TouchableOpacity`
     border-width: 1px;
     border-color: ${({ color }) => color? color : ''};
     background-color: ${({ outline, color }) => !outline? color? color : '' : '#fff'};

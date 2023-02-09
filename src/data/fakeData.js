@@ -1,44 +1,94 @@
 export const information = [
     {
+        "data": [
+            {
+                "id": 1,
+                "attributes": {
+                    "title": "PEMBERITAHUAN DIKBANGSPES BULAN FEBRUARI T.A. 2023 POLDA RIAU",
+                    "content": "B/53/I/DIK.2.3./2023/Ro SDM",
+                    "type": "seleksi",
+                    "slug": "pemberitahuan-dikbangspes-bulan-februari-t.a.-2023-polda-riau",
+                    "createdAt": "2023-01-18T02:10:31.686Z",
+                    "updatedAt": "2023-01-18T02:43:07.506Z"
+                }
+            }
+        ],
+        "meta": {
+            "pagination": {
+                "page": 1,
+                "pageSize": 25,
+                "pageCount": 1,
+                "total": 1
+            }
+        }
+    },
+    {
+        "data": [
+            {
+                "id": 2,
+                "attributes": {
+                    "title": "PEMBERITAHUAN DIKBANGSPES BULAN FEBRUARI T.A. 2023 POLDA RIAU",
+                    "content": "B/53/I/DIK.2.3./2023/Ro SDM",
+                    "type": "seleksi",
+                    "slug": "pemberitahuan-dikbangspes-bulan-februari-t.a.-2023-polda-riau",
+                    "createdAt": "2023-01-18T02:10:31.686Z",
+                    "updatedAt": "2023-01-18T02:43:07.506Z"
+                }
+            }
+        ],
+        "meta": {
+            "pagination": {
+                "page": 1,
+                "pageSize": 25,
+                "pageCount": 1,
+                "total": 1
+            }
+        }
+    },
+    {
+        "data": [
+            {
+                "id": 3,
+                "attributes": {
+                    "title": "PEMBERITAHUAN DIKBANGSPES BULAN FEBRUARI T.A. 2023 POLDA RIAU",
+                    "content": "B/53/I/DIK.2.3./2023/Ro SDM",
+                    "type": "seleksi",
+                    "slug": "pemberitahuan-dikbangspes-bulan-februari-t.a.-2023-polda-riau",
+                    "createdAt": "2023-01-18T02:10:31.686Z",
+                    "updatedAt": "2023-01-18T02:43:07.506Z"
+                }
+            }
+        ],
+        "meta": {
+            "pagination": {
+                "page": 1,
+                "pageSize": 25,
+                "pageCount": 1,
+                "total": 1
+            }
+        }
+    }
+]
+
+export const job = [
+    {
         id: 1,
-        title: "title 1",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
+        title: 'Bintara'
     },
     {
         id: 2,
-        title: "title 2",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
+        title: 'Perwira'
     },
     {
         id: 3,
-        title: "title 3",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
+        title: 'Bakomsus'
     },
     {
         id: 4,
-        title: "title 4",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
+        title: 'Polair'
     },
     {
         id: 5,
-        title: "title 5",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
-    },
-    {
-        id: 6,
-        title: "title 6",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
-    },
-    {
-        id: 7,
-        title: "title 7",
-        description: "Apa itu blog niche teknologi? Blog niche teknologi adalah situs web yang membahas tentang teknologi, mulai dari informasi perkembangan teknologi, ide, hingga review tentang teknologi-teknologi terbaru saat ini.",
-        image: "https://1.bp.blogspot.com/-YtyED_aASdw/YF9RWmpnUVI/AAAAAAAAAH8/whOEih7y824bNKbxm8teo-WDBBfUoXhoACLcBGAsYHQ/s640/recode-blog-teknologi.jpg"
+        title: 'Brimob'
     },
 ]

@@ -4,11 +4,11 @@ import { Input } from "native-base";
 import styled from "styled-components/native";
 import Button from "../components/Button";
 
-const Register = () => {
+const Register = ({navigation}) => {
   return (
     <ScrollView>
       <Container>
-        <Title>Register</Title>
+        <Title onPress={() => navigation.navigate('tab')} >Register</Title>
 
         <InputsCon>
           <InpCon>
@@ -151,8 +151,15 @@ const Register = () => {
           />
         </ButtonCon>
 
-        <View style={{ paddingRight: 20, paddingTop: 10, textAlign: 'right', fontSize: '15px' }}>
-          Already have Account? Login
+        <View style={{ paddingRight: 20, paddingTop: 10}}>
+          <Text style={{textAlign: 'right', fontSize: '15px'}}>
+            Already have Account?{' '}
+            <Text
+              onPress={() => navigation.navigate('login')}
+            >
+              Login
+            </Text>
+          </Text> 
         </View>
       </Container>
     </ScrollView>
@@ -162,7 +169,7 @@ const Register = () => {
 const Container = styled.View`
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin: 20px 0;
   /* background-color: green; */
 `;
 
