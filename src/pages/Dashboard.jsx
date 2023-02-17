@@ -8,7 +8,7 @@ import TopBar from '../components/TopBar'
 
 const Dashboard = ({navigation, route}) => {
 
-    console.log('tes', route)
+    // console.log('tes', route)
 
   return (
     <ScrollView>

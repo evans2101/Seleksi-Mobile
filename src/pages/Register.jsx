@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from "react-native";
 import { Input } from "native-base";
 import styled from "styled-components/native";
 import Button from "../components/Button";
+import Modal from '../components/Modal'
 
 const Register = ({navigation}) => {
   return (
@@ -161,6 +162,7 @@ const Register = ({navigation}) => {
             </Text>
           </Text> 
         </View>
+  
       </Container>
     </ScrollView>
   );

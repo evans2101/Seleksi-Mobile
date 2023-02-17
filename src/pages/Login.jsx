@@ -4,14 +4,54 @@ import { Image, Text, View } from 'react-native'
 import { MaterialIcons } from "@expo/vector-icons";
 import styled from 'styled-components/native'
 import Button from '../components/Button';
+import Modal from '../components/Modal'
+import { API } from '../config/api';
 
 const Login = ({navigation}) => {
     const [show, setShow] = useState(false)
+    const [open, setIsOpen] = useState(false)
+    const [categoryOpen, setCategoryOpen] = useState(false)
+    const [subCategoryOpen, setSubCategoryOpen] = useState(false)
+    const [form, setForm] = useState({
+      identifier: '',
+      password: ''
+    })
+
+  const { identifier, password } = form;
+
+
+  const handleLogin = async() => {
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = JSON.stringify(form);
+      const response = await API.post("api/auth/local", body, config);
+      navigation.navigate('tab')
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+    const toSubbag = () => {
+      setIsOpen(true)
+    }
+
+    const toCategory = () => {
+      setCategoryOpen(true)
+      setIsOpen(false)
+    }
+
+    const toSubCategory = () => {
+      setSubCategoryOpen(true)
+      setCategoryOpen(false)
+    }
+
   return (
     <Container>
       <Image 
         source={require('../../assets/banner.png')}
-        style={{ height: '50%', width: '90%', margin: '30px 0 30px 0'}}
+        style={{ height: '50%', width: '90%', marginTop:'30px', marginBottom:'30px'}}
         resizeMode='cover'
       />
       <Title>Login</Title>
@@ -20,6 +60,10 @@ const Login = ({navigation}) => {
       </View>
       <InputCon>
         <Input 
+            value={identifier}
+            onChangeText={(val) => {
+              setForm((prevState) => ({...prevState, identifier: val}))
+            }}
             borderRadius={10}
             borderColor='#ccc9c9'
             backgroundColor='#f9f9f9'
@@ -30,6 +74,10 @@ const Login = ({navigation}) => {
             }
         />
         <Input 
+            value={password}
+            onChangeText={(val) => {
+              setForm((prevState) => ({...prevState, password: val}))
+            }}
             borderRadius={10}
             borderColor='#ccc9c9'
             backgroundColor='#f9f9f9'
@@ -60,21 +108,77 @@ const Login = ({navigation}) => {
             outline={true} 
             width='50%' height='40px'
             marginRight='10px'
+            onPress={handleLogin}
           />
           <Button 
             text='Register' 
             color='#0386D0' 
             width='50%' height='40px'
             textColor='#fff'
-            onPress={() => navigation.navigate('register')}
+            onPress={toSubbag}
           />
       </ButtonCon>
     </View>
 
-      {/* <Text style={{textAlign:'right', marginRight:20, marginTop:15}}>
-        Don't have an account? 
-        <Text style={{color:'purple'}}> Sign Up</Text>
-      </Text> */}
+    {/* <RegisterPopup open={open} setIsOpen={setIsOpen}/> */}
+
+       <Modal open={open} setIsOpen={setIsOpen} isBackgroundClick={true}>
+        <View>
+          <TitleModal>Sihlakan Pilih Subbag</TitleModal>
+          <ChooseCon activeOpacity='3.0' onPress={toCategory}>
+            <Text>Subbag Diapers</Text>
+            <TitleModal>></TitleModal>
+          </ChooseCon>
+          <ChooseCon>
+            <Text>Subbag Seleksi</Text>
+            <TitleModal>></TitleModal>
+          </ChooseCon>
+          <ChooseCon>
+            <Text>Subbag PNS</Text>
+            <TitleModal>></TitleModal>
+          </ChooseCon>
+        </View>
+       </Modal>
+
+       <Modal open={categoryOpen} setIsOpen={setCategoryOpen}>
+        <TitleModal>Sihlakan Pilih Kategori</TitleModal>
+        <ChooseCon activeOpacity='3.0' onPress={toSubCategory}>
+          <Text>Akpol</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>SIPSS</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>Bintara</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>Tamtama</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+       </Modal>
+
+       <Modal open={subCategoryOpen} setIsOpen={setSubCategoryOpen}>
+        <TitleModal>Sihlakan Pilih Sub Kategori</TitleModal>
+        <ChooseCon activeOpacity='3.0' onPress={() => navigation.navigate('register')}>
+          <Text>Bakomsus</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>Bintara PTU</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>Bintara Brimop</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+        <ChooseCon activeOpacity='3.0'>
+          <Text>Bintara Rekpro</Text>
+          <TitleModal>></TitleModal>
+        </ChooseCon>
+       </Modal>
 
     </Container>
   )
@@ -111,6 +215,18 @@ const ButtonCon = styled.View`
     margin: 20px 0 ;
     /* background-color: red; */
     width: 90%;
+`
+const TitleModal = styled.Text`
+  font-size: 20px;
+  font-weight: 500;
+`
+
+const ChooseCon = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 5px 8px 0;
 `
 
 export default Login

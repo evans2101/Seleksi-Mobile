@@ -17,9 +17,7 @@ import BottomTabs from './BottomTabs';
 const Stack = createNativeStackNavigator()
 
 
-const Routes = ({routes, setRoutes}) => {
-
-  console.log(routes)
+const Routes = () => {
   
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -35,7 +33,7 @@ const Routes = ({routes, setRoutes}) => {
       <Stack.Screen name="artikel" component={Artikel} />
       {/* <Stack.Screen name="Ujian" component={TestCards} /> */}
       <Stack.Screen name="Exam" component={Test} />
-      <Stack.Screen name="profile" component={Profile} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   )
 }

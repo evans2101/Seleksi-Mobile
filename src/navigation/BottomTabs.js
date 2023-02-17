@@ -2,11 +2,10 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons"
 
-import Routes from './Routes';
 import Dashboard from '../pages/Dashboard';
 import Information from '../pages/Information';
 import TestCards from '../pages/TestCards';
-import Artikel from '../pages/Artikel';
+
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
@@ -36,7 +35,6 @@ const BottomTabs = () => {
             <Tab.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
             <Tab.Screen name="Information" component={Information} options={{ headerShown: false }} />
             <Tab.Screen name="Ujian" component={TestCards} options={{ headerShown: false }} />
-            {/* <Tab.Screen name="Artikel" component={Artikel} options={{ headerShown: false }} /> */}
 
         </Tab.Navigator>
     )

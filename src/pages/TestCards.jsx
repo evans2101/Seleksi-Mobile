@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Text, View, Image, FlatList, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
+import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import Button from '../components/Button'
 import TopBar from '../components/TopBar'
@@ -14,6 +15,7 @@ const TestCards = ({navigation}) => {
         <Container>
             <TopBar />
             <BarHelper />
+            <Back navigation={navigation} isSearch={true}/>
 
             <BoxesCon>
                 {/* <FlatList 

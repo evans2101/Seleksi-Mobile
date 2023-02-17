@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Text, View, Image, FlatList, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
+import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import TopBar from '../components/TopBar'
 import { information } from '../data/fakeData'
@@ -40,6 +41,7 @@ const Information = ({navigation}) => {
       <Container>
         <TopBar />
         <BarHelper />
+        <Back navigation={navigation} isSearch={true}/>
 
         <FlatList 
           data={data}

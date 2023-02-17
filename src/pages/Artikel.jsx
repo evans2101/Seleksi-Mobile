@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import { Text, View, Image, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
+import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import TopBar from '../components/TopBar'
 
-const Artikel = () => {
+const Artikel = ({navigation}) => {
 
   return (
     <ScrollView>
         <Container>
             <TopBar />
             <BarHelper />
+            <Back navigation={navigation} />
 
             <Card>
                 <Line></Line>

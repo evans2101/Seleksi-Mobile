@@ -5,21 +5,17 @@ import { NativeBaseProvider } from "native-base";
 import styled from 'styled-components/native'
 
 import Routes from './src/navigation/Routes';
-import BottomTabs from './src/navigation/BottomTabs';
-import Navigation from './src/navigation/Navigation';
 import { useState } from 'react';
+// import SideNav from './src/navigation/SideNav';
 
 export default function App() {
-  const [routes, setRoutes] = useState('Loginn')
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <Container back={'white'}>
           {/* <StatusBar style="auto" /> */}
-          {/* <Routes routes={routes} setRoutes={setRoutes} /> */}
-          {/* <BottomTabs /> */}
-
-          <Navigation routes={routes} />
+          <Routes />
+          
         </Container>
       </NavigationContainer>
     </NativeBaseProvider>
