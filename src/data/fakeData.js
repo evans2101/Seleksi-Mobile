@@ -92,3 +92,60 @@ export const job = [
         title: 'Brimob'
     },
 ]
+
+export const regis = [
+    {
+        id: 1,
+        input: "email",
+        name: "Email",
+        type: "text"
+    },
+    {
+        id: 2,
+        input: "password",
+        name: "Password",
+        type: "password"
+    },
+    {
+        id: 3,
+        input: "nip_nrp",
+        name: "NIP/NRP",
+        type: "text"
+    },
+    {
+        id: 4,
+        input: "name",
+        name: "Nama lengkap",
+        type: "text"
+    },
+    {
+        id: 6,
+        input: "birth_place",
+        name: "Tempat Lahir",
+        type: "text"
+    },
+    {
+        id: 7,
+        input: "birth_date",
+        name: "Tanggal Lahir",
+        type: "text"
+    },
+    {
+        id: 8,
+        input: "gender",
+        name: "Jenis Kelamin",
+        type: "text"
+    },
+    {
+        id: 9,
+        input: "phone",
+        name: "No.Hp",
+        type: "text"
+    },
+    {
+        id: 10,
+        input: "satker",
+        name: "Satker",
+        type: "text"
+    },
+]

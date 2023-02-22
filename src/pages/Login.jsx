@@ -1,17 +1,31 @@
 import { Input, Icon, Pressable, Checkbox } from 'native-base'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Text, View } from 'react-native'
 import { MaterialIcons } from "@expo/vector-icons";
 import styled from 'styled-components/native'
 import Button from '../components/Button';
 import Modal from '../components/Modal'
+import Register from './Register';
 import { API } from '../config/api';
 
 const Login = ({navigation}) => {
+    const [regis, setRegis] = useState(false)
     const [show, setShow] = useState(false)
     const [open, setIsOpen] = useState(false)
     const [categoryOpen, setCategoryOpen] = useState(false)
     const [subCategoryOpen, setSubCategoryOpen] = useState(false)
+
+    const [subbagList, setSubbagList] = useState()
+    const [subbagName, setSubbagName] = useState()
+    const [idSubbag, setIdSubbag] = useState()
+
+    const [categoryList, setCategoryList] = useState()
+    const [categoryName, setCategoryName] = useState()
+    const [idCategory, setIdCategory] = useState()
+
+    const [subCategoryList, setSubCategoryList] = useState()
+    const [subCategoryName, setSubCategoryName] = useState()
+
     const [form, setForm] = useState({
       identifier: '',
       password: ''
@@ -19,13 +33,12 @@ const Login = ({navigation}) => {
 
   const { identifier, password } = form;
 
-
   const handleLogin = async() => {
     try {
       const config = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify(form);
       const response = await API.post("api/auth/local", body, config);
-      navigation.navigate('tab')
+      if(response?.status === 200) navigation.navigate('tab')
 
       console.log(response)
     } catch (error) {
@@ -33,19 +46,65 @@ const Login = ({navigation}) => {
     }
   }
 
-    const toSubbag = () => {
-      setIsOpen(true)
+  const getSubbag = async() => {
+    try {
+      const res = await API.get(`api/categories`)
+      setSubbagList(res?.data?.data)
+      if(idSubbag !== undefined) setCategoryList(res?.data?.data[idSubbag]?.attributes?.categories)
+      if(idCategory !== undefined){
+        setSubCategoryList(res?.data?.data[idSubbag]?.attributes?.categories[idCategory]?.sub_categories)
+      }
+    } catch (error) {
+      console.log(error)
     }
+  }
 
-    const toCategory = () => {
+    const toCategory = (id, name) => {
+      setIdSubbag(id)
+      setSubbagName(name)
       setCategoryOpen(true)
       setIsOpen(false)
     }
 
-    const toSubCategory = () => {
-      setSubCategoryOpen(true)
-      setCategoryOpen(false)
+    const toSubCategory = (id, name, dataSub) => {
+      if(dataSub.length > 0){
+        setIdCategory(id)
+        setCategoryName(name)
+        setSubCategoryOpen(true)
+        setCategoryOpen(false)
+      } else {
+        setCategoryName(name)
+        setRegis(true)
+        // navigation.navigate('register', {
+        //   category: categoryName,
+        //   subCategory: subCategoryName
+        // })
+      }
     }
+
+    const toRegister = (name) => {
+      setSubCategoryName(name)
+      setRegis(true)
+      // navigation.navigate('register', {
+      //   category: categoryName,
+      //   subCategory: subCategoryName
+      // })
+    }
+
+    useEffect(() => {
+      getSubbag()
+    }, [idSubbag, idCategory])
+
+    useEffect(() => {
+      if(subbagName){
+        if(subbagName === 'SUBBAG DIAPERS') setSubbagName('diapers-users')
+        if(subbagName === 'SUBBAG SELEKSI') setSubbagName('seleksi-users')
+        if(subbagName === 'SUBBAG PNS') setSubbagName('pns-users')
+      }
+
+    },[ subbagName, categoryName, subCategoryName])
+  
+  if(regis) return <Register subbag={subbagName} category={categoryName} subCategory={subCategoryName} />
 
   return (
     <Container>
@@ -115,7 +174,7 @@ const Login = ({navigation}) => {
             color='#0386D0' 
             width='50%' height='40px'
             textColor='#fff'
-            onPress={toSubbag}
+            onPress={() => setIsOpen(true)}
           />
       </ButtonCon>
     </View>
@@ -125,59 +184,42 @@ const Login = ({navigation}) => {
        <Modal open={open} setIsOpen={setIsOpen} isBackgroundClick={true}>
         <View>
           <TitleModal>Sihlakan Pilih Subbag</TitleModal>
-          <ChooseCon activeOpacity='3.0' onPress={toCategory}>
-            <Text>Subbag Diapers</Text>
-            <TitleModal>></TitleModal>
-          </ChooseCon>
-          <ChooseCon>
-            <Text>Subbag Seleksi</Text>
-            <TitleModal>></TitleModal>
-          </ChooseCon>
-          <ChooseCon>
-            <Text>Subbag PNS</Text>
-            <TitleModal>></TitleModal>
-          </ChooseCon>
+          {subbagList?.map((data, idx) => (
+            <ChooseCon 
+              activeOpacity='3.0' 
+              onPress={() => toCategory(idx, data?.attributes?.name) } 
+              key={idx}
+            >
+              <Text>{data?.attributes?.name}</Text>
+              <TitleModal>></TitleModal>
+            </ChooseCon>
+          ))}
         </View>
        </Modal>
 
-       <Modal open={categoryOpen} setIsOpen={setCategoryOpen}>
+       <Modal open={categoryOpen} setIsOpen={setCategoryOpen} isBackgroundClick={true}>
         <TitleModal>Sihlakan Pilih Kategori</TitleModal>
-        <ChooseCon activeOpacity='3.0' onPress={toSubCategory}>
-          <Text>Akpol</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>SIPSS</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>Bintara</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>Tamtama</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
+        {categoryList?.map((data, idx) => (
+          <ChooseCon 
+            activeOpacity='3.0' 
+            onPress={() => toSubCategory(idx, data.name, data.sub_categories)} 
+            key={idx}
+          >
+            <Text>{data.name}</Text>
+            {data.sub_categories?.length > 0 && (
+              <TitleModal>></TitleModal>
+            )}
+          </ChooseCon>
+        ))}
        </Modal>
 
-       <Modal open={subCategoryOpen} setIsOpen={setSubCategoryOpen}>
+       <Modal open={subCategoryOpen} setIsOpen={setSubCategoryOpen} isBackgroundClick={true}>
         <TitleModal>Sihlakan Pilih Sub Kategori</TitleModal>
-        <ChooseCon activeOpacity='3.0' onPress={() => navigation.navigate('register')}>
-          <Text>Bakomsus</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>Bintara PTU</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>Bintara Brimop</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
-        <ChooseCon activeOpacity='3.0'>
-          <Text>Bintara Rekpro</Text>
-          <TitleModal>></TitleModal>
-        </ChooseCon>
+        {subCategoryList?.map((data) => (
+          <ChooseCon activeOpacity='3.0' onPress={() => toRegister(data.name)} key={data.id}>
+            <Text>{data.name}</Text>
+          </ChooseCon>
+        ))}
        </Modal>
 
     </Container>
