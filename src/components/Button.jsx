@@ -1,10 +1,10 @@
 import { Text, View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
-const Button = ({text, color, outline, textColor, ...rest}) => {
+const Button = ({text, color, outline, textColor, fontSize, ...rest}) => {
   return (
     <Buttons outline={outline} color={color} {...rest }>
-      <Text style={{color:textColor? textColor : ''}}>{text}</Text>
+      <Text style={{color:textColor? textColor : '', fontSize:fontSize}}>{text}</Text>
     </Buttons>
   )
 }

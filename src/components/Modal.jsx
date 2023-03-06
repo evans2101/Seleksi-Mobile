@@ -32,7 +32,7 @@ const ModalContainer = styled.TouchableOpacity`
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  position: fixed;
+  position: absolute;
   top: 40%;
   left: 10%;
   padding: 10px;

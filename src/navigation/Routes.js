@@ -21,6 +21,7 @@ const Routes = () => {
   
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* <Stack.Screen name="Ujian" component={TestCards} /> */}
       <Stack.Screen name="login" component={Login} />
       <Stack.Screen name="register" component={Register} />
       <Stack.Screen name="tab" component={BottomTabs} />
@@ -31,7 +32,6 @@ const Routes = () => {
        /> */}
       {/* <Stack.Screen name="Information" component={Information} ini /> */}
       <Stack.Screen name="artikel" component={Artikel} />
-      {/* <Stack.Screen name="Ujian" component={TestCards} /> */}
       <Stack.Screen name="Exam" component={Test} />
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>

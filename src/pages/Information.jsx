@@ -1,31 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, View, Image, FlatList, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import TopBar from '../components/TopBar'
+import { API } from '../config/api'
 import { information } from '../data/fakeData'
 
 const Information = ({navigation}) => {
-  const [data, setData] = useState(information)
+  const [data, setData] = useState()
+
+   const getArticles = async() => {
+    try {
+      const res = await API.get(`api/articles?populate=*`)
+      setData(res.data.data)
+      console.log(res.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+   }
+
+   const limitContent = (content) => {
+    let limit = content.substring(0, 24)
+    let word = limit + '...'
+
+    return (
+      content.length < 25 ? content : word
+    )
+   }
+
+  useEffect(() => {
+    getArticles()
+  },[])
 
   const renderItem = ({item}) => {
-    // console.log(item)
-    // console.log('item', item.data[0].id)
 
     return(
       <BoxesCon>
-        <Card onPress={() => navigation.navigate('artikel')}>
+        <Card onPress={() => navigation.navigate('artikel', {data : item})}>
           <Line></Line>
           <CardContent>
             <DescCon>
-              <Title>Title 1</Title>
-              <Text>Content Descriptionnnnnnnnnnnnnnn</Text>
+              <Title>{item.attributes.title}</Title>
+              <Text>{limitContent(item.attributes.content)}</Text>
             </DescCon>
 
             <View>
               <Image 
-                  source={require('../../assets/inforImg.jpg')}
+                  source={`${item.attributes.cover.data.attributes.url}`}
                   style={{ height: '55px', width: '100px'}}
                   resizeMode='cover'
               />
@@ -46,7 +68,7 @@ const Information = ({navigation}) => {
         <FlatList 
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.data[0].id }
+          keyExtractor={(item) => item.id }
         />
 
       </Container>

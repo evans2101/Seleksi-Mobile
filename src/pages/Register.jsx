@@ -11,6 +11,8 @@ const Register = ({navigation, subbag, category, subCategory}) => {
   const [form, setForm] = useState({
     email: '',
     password: '',
+    category: category,
+    sub_Category: subCategory,
     nip_nrp: '',
     name: '',
     birth_place: '',
@@ -26,7 +28,7 @@ const Register = ({navigation, subbag, category, subCategory}) => {
       const body = JSON.stringify(form);
       
       const response = await API.post(`api/${subbag}/register`, body, config);
-      if(response?.status === 200) navigation.navigate('tab')
+      if(response?.status === 200) navigation.navigate('login')
 
     } catch (error) {
       console.log(error)

@@ -9,6 +9,7 @@ import Register from './Register';
 import { API } from '../config/api';
 
 const Login = ({navigation}) => {
+    const [errorMessage, setErrorMessage] = useState()
     const [regis, setRegis] = useState(false)
     const [show, setShow] = useState(false)
     const [open, setIsOpen] = useState(false)
@@ -40,9 +41,8 @@ const Login = ({navigation}) => {
       const response = await API.post("api/auth/local", body, config);
       if(response?.status === 200) navigation.navigate('tab')
 
-      console.log(response)
-    } catch (error) {
-      console.log(error)
+    } catch ({response}) {
+      setErrorMessage(response?.data?.error?.message)
     }
   }
 
@@ -108,13 +108,15 @@ const Login = ({navigation}) => {
 
   return (
     <Container>
-      <Image 
-        source={require('../../assets/banner.png')}
-        style={{ height: '50%', width: '90%', marginTop:'30px', marginBottom:'30px'}}
-        resizeMode='cover'
-      />
+      <ImageContainer>
+        <Image 
+          source={require('../../assets/logo1.png')}
+          style={{ height: '70%', width: '70%', marginTop:'30px', marginBottom:'30px'}}
+          resizeMode='cover'
+        />
+      </ImageContainer>
       <Title>Login</Title>
-      <View style={{textAlign: 'center', paddingButtom: '30px'}}>
+      <View style={{textAlign: 'center'}}>
         <Text>Selamat Datang di E-Seleksi Polda Riau</Text> 
       </View>
       <InputCon>
@@ -152,12 +154,18 @@ const Login = ({navigation}) => {
       </InputCon>
 
       <View style={{paddingLeft:20, paddingTop:10}}>
-        <Checkbox.Group
+        {/* <Checkbox.Group
             // onChange={setGroupValues} value={groupValues}
         >
             <Checkbox value="one" my={2}>Remember Password</Checkbox>
-        </Checkbox.Group>
+        </Checkbox.Group> */}
+        {errorMessage && (
+          <View>
+            <Text style={{color:'red'}}>{errorMessage}</Text>
+          </View>
+        )}
       </View>
+
 
     <View style={{display:'flex', alignItems:'center'}}>
       <ButtonCon>
@@ -229,8 +237,14 @@ const Login = ({navigation}) => {
 const Container = styled.View`
     display: flex;
     justify-content: center;
-    margin: 130px 0;
+    margin: 120px 0;
     /* background-color: green; */
+`
+
+const ImageContainer = styled.View`
+  display: flex;
+  align-items: center;
+  height: 100%;
 `
 
 const Title = styled.Text`
@@ -239,9 +253,12 @@ const Title = styled.Text`
     text-transform: uppercase;
     font-size: 20px;
     margin: 10px 0 15px 0;
+    /* background-color: red; */
+    /* padding-top: -30px; */
 `
 const InputCon = styled.View`
     margin-top: 40px;
+    /* padding-top: -200px; */
     display: flex;
     justify-content: center;
     align-items: center;
