@@ -1,144 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
 import { Input } from "native-base";
 import styled from "styled-components/native";
 import Button from "../components/Button";
+import Modal from '../components/Modal'
+import { API } from "../config/api";
+import { regis } from "../data/fakeData";
 
-const Register = () => {
+const Register = ({navigation, subbag, category, subCategory}) => {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    category: category,
+    sub_Category: subCategory,
+    nip_nrp: '',
+    name: '',
+    birth_place: '',
+    birth_date: '',
+    gender: '',
+    phone: '',
+    satker: ''
+  })
+
+  const handleRegister = async() => {
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = JSON.stringify(form);
+      
+      const response = await API.post(`api/${subbag}/register`, body, config);
+      if(response?.status === 200) navigation.navigate('login')
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <ScrollView>
       <Container>
-        <Title>Register</Title>
+        <Title onPress={() => navigation.navigate('tab')} >{subCategory? subCategory : category}</Title>
 
         <InputsCon>
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>Email</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
+          {regis.map((inp, idx) => (
+            <InpCon key={idx}>
+              <Text style={{ textAlign: "left", width: "90%" }}>{inp?.name}</Text>
+              <Input
+                value={form[inp.input]}
+                onChangeText={(val) => {
+                  setForm((prevState) => ({...prevState, [inp.input]: val}))
+                }}
+                borderRadius={10}
+                borderColor="#ccc9c9"
+                backgroundColor="#f9f9f9"
+                w={"90%"}
+                marginTop="8px"
+                marginBottom="10px"
+                type={inp?.type}
+              />
+            </InpCon>
+          ))}
 
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>Password</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-              type="password"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>NIP/NRP</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>
-              Nama Lengkap
-            </Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>Pangkat</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>
-              Tempat Lahir
-            </Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>
-              Tanggal Lahir
-            </Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>
-              Jenis Kelamin
-            </Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>No.Hp</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
-
-          <InpCon>
-            <Text style={{ textAlign: "left", width: "90%" }}>Satker</Text>
-            <Input
-              borderRadius={10}
-              borderColor="#ccc9c9"
-              backgroundColor="#f9f9f9"
-              w={"90%"}
-              marginTop="8px"
-              marginBottom="10px"
-            />
-          </InpCon>
         </InputsCon>
 
         <ButtonCon>
@@ -148,12 +69,21 @@ const Register = () => {
             outline={true}
             width="50%"
             height="35px"
+            onPress={handleRegister}
           />
         </ButtonCon>
 
-        <View style={{ paddingRight: 20, paddingTop: 10, textAlign: 'right', fontSize: '15px' }}>
-          Already have Account? Login
+        <View style={{ paddingRight: 20, paddingTop: 10}}>
+          <Text style={{textAlign: 'right', fontSize: '15px'}}>
+            Already have Account?{' '}
+            <Text
+              onPress={() => navigation.navigate('login')}
+            >
+              Login
+            </Text>
+          </Text> 
         </View>
+  
       </Container>
     </ScrollView>
   );
@@ -162,7 +92,7 @@ const Register = () => {
 const Container = styled.View`
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin: 20px 0;
   /* background-color: green; */
 `;
 
