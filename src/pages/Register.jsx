@@ -8,6 +8,7 @@ import { API } from "../config/api";
 import { regis } from "../data/fakeData";
 
 const Register = ({navigation, subbag, category, subCategory}) => {
+  const [date, setDate] = useState('09-10-2021');
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -44,20 +45,25 @@ const Register = ({navigation, subbag, category, subCategory}) => {
           {regis.map((inp, idx) => (
             <InpCon key={idx}>
               <Text style={{ textAlign: "left", width: "90%" }}>{inp?.name}</Text>
-              <Input
-                value={form[inp.input]}
-                onChangeText={(val) => {
-                  setForm((prevState) => ({...prevState, [inp.input]: val}))
-                }}
-                borderRadius={10}
-                borderColor="#ccc9c9"
-                backgroundColor="#f9f9f9"
-                w={"90%"}
-                marginTop="8px"
-                marginBottom="10px"
-                type={inp?.type}
-              />
-            </InpCon>
+              {inp?.input !== 'birth_date' ? 
+                <Input
+                  value={form[inp.input]}
+                  onChangeText={(val) => {
+                    setForm((prevState) => ({...prevState, [inp.input]: val}))
+                  }}
+                  borderRadius={10}
+                  borderColor="#ccc9c9"
+                  backgroundColor="#f9f9f9"
+                  w={"90%"}
+                  marginTop="8px"
+                  marginBottom="10px"
+                  type={inp?.type}
+                /> : 
+                <View>
+                  <Text></Text>
+                </View>
+              }
+            </InpCon> 
           ))}
 
         </InputsCon>

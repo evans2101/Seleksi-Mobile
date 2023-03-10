@@ -7,8 +7,10 @@ import Button from '../components/Button';
 import Modal from '../components/Modal'
 import Register from './Register';
 import { API } from '../config/api';
+import userData from '../context/UserContext';
 
 const Login = ({navigation}) => {
+    const [userData, setUserData] = useState()
     const [errorMessage, setErrorMessage] = useState()
     const [regis, setRegis] = useState(false)
     const [show, setShow] = useState(false)
@@ -36,13 +38,21 @@ const Login = ({navigation}) => {
 
   const handleLogin = async() => {
     try {
+      console.log('tesesss')
       const config = { headers: { "Content-Type": "application/json" } };
-      const body = JSON.stringify(form);
+      const data = JSON.stringify(form);
+      const body = data
       const response = await API.post("api/auth/local", body, config);
-      if(response?.status === 200) navigation.navigate('tab')
+
+      console.log('res', response)
+      if(response?.status === 200){
+        setUserData(response?.data?.user)
+        navigation.navigate('tab')
+      }
 
     } catch ({response}) {
       setErrorMessage(response?.data?.error?.message)
+      // console.log(error)
     }
   }
 
@@ -96,6 +106,11 @@ const Login = ({navigation}) => {
     }, [idSubbag, idCategory])
 
     useEffect(() => {
+      console.log(form)
+      console.log(userData)
+    }, [form, userData])
+
+    useEffect(() => {
       if(subbagName){
         if(subbagName === 'SUBBAG DIAPERS') setSubbagName('diapers-users')
         if(subbagName === 'SUBBAG SELEKSI') setSubbagName('seleksi-users')
@@ -108,10 +123,13 @@ const Login = ({navigation}) => {
 
   return (
     <Container>
+      {/* {userData && 
+        <userData.Provider value={{user: userData}}></userData.Provider>
+      } */}
       <ImageContainer>
         <Image 
           source={require('../../assets/logo1.png')}
-          style={{ height: '70%', width: '70%', marginTop:'30px', marginBottom:'30px'}}
+          style={{ height: '90%', width: '70%', marginTop:'30px', marginBottom:'30px'}}
           resizeMode='cover'
         />
       </ImageContainer>
@@ -244,7 +262,7 @@ const Container = styled.View`
 const ImageContainer = styled.View`
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 90%;
 `
 
 const Title = styled.Text`
@@ -254,7 +272,7 @@ const Title = styled.Text`
     font-size: 20px;
     margin: 10px 0 15px 0;
     /* background-color: red; */
-    /* padding-top: -30px; */
+    /* padding-top: -60px; */
 `
 const InputCon = styled.View`
     margin-top: 40px;

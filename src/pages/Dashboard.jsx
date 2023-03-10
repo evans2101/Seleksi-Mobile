@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Text, View, TouchableOpacity, FlatList, ScrollView, StyleSheet } from 'react-native'
 import { AntDesign, Ionicons, FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native'
 import BarHelper from '../components/BarHelper'
 import Button from '../components/Button'
 import TopBar from '../components/TopBar'
+import userData from '../context/UserContext';
 
 const Dashboard = ({navigation, route}) => {
+
+    console.log({userData})
+    const user = useContext(userData)
+
+    console.log({user})
 
   return (
     <ScrollView>
@@ -14,10 +20,10 @@ const Dashboard = ({navigation, route}) => {
             <TopBar />
             <BarHelper />
 
-            <View style={{width:'90%', marginBottom:'40px'}}>
+            <ProfileWrap>
                 <Title>Dashboard</Title>
                 <Text style={{fontWeight:'400', color:'#9696A0'}}>Welcome, John Smith</Text>
-            </View>
+            </ProfileWrap>
 
             <MenuBoxes>
                 <Card>
@@ -89,6 +95,11 @@ const Title = styled.Text`
 const OptionText = styled.Text`
     font-size: 15px;
     font-weight: 500;
+`
+
+const ProfileWrap = styled.View`
+    width: 90%;
+    margin-bottom: 40%;
 `
 
 // const styles = StyleSheet.create
