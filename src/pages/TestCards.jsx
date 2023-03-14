@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { Text, View, Image, FlatList, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import Back from '../components/Back'
@@ -9,6 +9,7 @@ import Modal from '../components/Modal'
 import { API } from '../config/api'
 import { job } from '../data/fakeData'
 import { Input } from 'native-base'
+import { UserContext } from '../context/UserContext'
 
 const TestCards = ({navigation}) => {
     const [open, setIsOpen] = useState(false)
@@ -17,6 +18,7 @@ const TestCards = ({navigation}) => {
     const [code, setCode] = useState()
     const [inpCode, setInpCode] = useState()
     const [testId, setTestId] = useState()
+    const {user, setUser, subbag, setSubbag} = useContext(UserContext)
 
     const scrollRef = useRef();
 
@@ -56,7 +58,7 @@ const TestCards = ({navigation}) => {
     // <View style={{backgroundColor:'white'}}>
         <ScrollView ref={scrollRef}>
             <Container>
-                <TopBar />
+                <TopBar user={user} subbag={subbag} />
                 <BarHelper />
                 <Back navigation={navigation} isSearch={true}/>
 

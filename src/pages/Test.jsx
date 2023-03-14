@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Text, View, Image, FlatList, ScrollView, TextInput } from 'react-native'
 import { Radio } from 'native-base'
 import styled from 'styled-components/native'
@@ -8,6 +8,7 @@ import Button from '../components/Button'
 import TopBar from '../components/TopBar'
 import { API } from '../config/api'
 import Modal from '../components/Modal'
+import { UserContext } from '../context/UserContext'
 
 const Test = ({navigation, route}) => {
   const {id} = route.params
@@ -22,6 +23,7 @@ const Test = ({navigation, route}) => {
     class: ''
   })
   const scrollRef = useRef();
+  const {user, setUser, subbag, setSubbag} = useContext(UserContext)
 
   const onPressTouch = () => {
       scrollRef.current?.scrollTo({
@@ -108,7 +110,7 @@ const Test = ({navigation, route}) => {
   return (
     <ScrollView ref={scrollRef}> 
         <Container>
-            <TopBar />
+            <TopBar user={user} subbag={subbag} />
             <BarHelper />
             <Back navigation={navigation} />
 

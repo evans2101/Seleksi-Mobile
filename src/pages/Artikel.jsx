@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Text, View, Image, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import TopBar from '../components/TopBar'
+import { UserContext } from '../context/UserContext'
 
 const Artikel = ({navigation, route}) => {
  const {data} = route.params
-
+ const {user, setUser, subbag, setSubbag} = useContext(UserContext)
  console.log(data)
   return (
     <ScrollView>
         <Container>
-            <TopBar />
+            <TopBar user={user} subbag={subbag} />
             <BarHelper />
             <Back navigation={navigation} />
 
