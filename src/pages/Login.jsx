@@ -1,5 +1,5 @@
 import { Input, Icon, Pressable, Checkbox } from 'native-base'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, Text, View } from 'react-native'
 import { MaterialIcons } from "@expo/vector-icons";
 import styled from 'styled-components/native'
@@ -7,10 +7,10 @@ import Button from '../components/Button';
 import Modal from '../components/Modal'
 import Register from './Register';
 import { API } from '../config/api';
-import userData from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
 
 const Login = ({navigation}) => {
-    const [userData, setUserData] = useState()
+    // const [userData, setUserData] = useState()
     const [errorMessage, setErrorMessage] = useState()
     const [regis, setRegis] = useState(false)
     const [show, setShow] = useState(false)
@@ -29,6 +29,8 @@ const Login = ({navigation}) => {
     const [subCategoryList, setSubCategoryList] = useState()
     const [subCategoryName, setSubCategoryName] = useState()
 
+    const {user, setUser} = useContext(UserContext)
+
     const [form, setForm] = useState({
       identifier: '',
       password: ''
@@ -46,7 +48,8 @@ const Login = ({navigation}) => {
 
       console.log('res', response)
       if(response?.status === 200){
-        setUserData(response?.data?.user)
+        // setUserData(response?.data?.user)
+        setUser(response?.data?.user)
         navigation.navigate('tab')
       }
 
@@ -107,8 +110,8 @@ const Login = ({navigation}) => {
 
     useEffect(() => {
       console.log(form)
-      console.log(userData)
-    }, [form, userData])
+      // console.log({user})
+    }, [form, user])
 
     useEffect(() => {
       if(subbagName){
@@ -119,13 +122,10 @@ const Login = ({navigation}) => {
 
     },[ subbagName, categoryName, subCategoryName])
   
-  if(regis) return <Register subbag={subbagName} category={categoryName} subCategory={subCategoryName} />
+  if(regis) return <Register navigation={navigation} subbag={subbagName} category={categoryName} subCategory={subCategoryName} />
 
   return (
     <Container>
-      {/* {userData && 
-        <userData.Provider value={{user: userData}}></userData.Provider>
-      } */}
       <ImageContainer>
         <Image 
           source={require('../../assets/logo1.png')}

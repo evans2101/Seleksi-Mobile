@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Modal from '../components/Modal'
 import { API } from "../config/api";
 import { regis } from "../data/fakeData";
+// import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 const Register = ({navigation, subbag, category, subCategory}) => {
   const [date, setDate] = useState('09-10-2021');
@@ -39,7 +40,7 @@ const Register = ({navigation, subbag, category, subCategory}) => {
   return (
     <ScrollView>
       <Container>
-        <Title onPress={() => navigation.navigate('tab')} >{subCategory? subCategory : category}</Title>
+        <Title>{subCategory? subCategory : category}</Title>
 
         <InputsCon>
           {regis.map((inp, idx) => (
@@ -60,7 +61,7 @@ const Register = ({navigation, subbag, category, subCategory}) => {
                   type={inp?.type}
                 /> : 
                 <View>
-                  <Text></Text>
+                  {/* <RNDateTimePicker mode="date" value={new Date()} /> */}
                 </View>
               }
             </InpCon> 
@@ -83,7 +84,7 @@ const Register = ({navigation, subbag, category, subCategory}) => {
           <Text style={{textAlign: 'right', fontSize: '15px'}}>
             Already have Account?{' '}
             <Text
-              onPress={() => navigation.navigate('login')}
+              onPress={() =>navigation.navigate('tab')}
             >
               Login
             </Text>

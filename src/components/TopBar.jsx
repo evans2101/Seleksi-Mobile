@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Text, View, Image } from 'react-native'
 import styled from 'styled-components/native'
 
-const TopBar = () => {
+const TopBar = ({user, subbag}) => {
+
+    // useEffect(() => {
+    //     console.log(user[subbag]?.user_detail?.name)
+    //     console.log({user})
+    //     console.log({subbag})
+    // }, [user, subbag])
+    
   return (
     <Container>
         <Header>
             <Image 
-                source={require('../../assets/inforImg.jpg')}
+                source={require('../../assets/logo1.png')}
                 style={{ height: '45px', width: '45px'}}
                 resizeMode='cover'
             />
             <Profile>
-                <Text>John Smith</Text>
+                <Text>{user[subbag]?.user_detail?.name}</Text>
                 <Image 
-                    source={require('../../assets/inforImg.jpg')}
-                    style={{ height: '40px', width: '40px', borderRadius:'50%', marginLeft:'10px'}}
+                    source={require('../../assets/profile.png')}
+                    style={{ height: '26px', width: '26px', borderRadius:'50%', marginLeft:'10px'}}
                     resizeMode='cover'
                 />
             </Profile>

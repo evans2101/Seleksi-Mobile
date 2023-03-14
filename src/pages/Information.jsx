@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, Image, FlatList, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import Back from '../components/Back'
 import BarHelper from '../components/BarHelper'
 import TopBar from '../components/TopBar'
 import { API } from '../config/api'
+import { UserContext } from '../context/UserContext'
 import { information } from '../data/fakeData'
 
 const Information = ({navigation}) => {
   const [data, setData] = useState()
+  const {user, setUser, subbag, setSubbag} = useContext(UserContext)
 
    const getArticles = async() => {
     try {
@@ -61,7 +63,7 @@ const Information = ({navigation}) => {
   return (
     <ScrollView>
       <Container>
-        <TopBar />
+        <TopBar user={user} subbag={subbag}/>
         <BarHelper />
         <Back navigation={navigation} isSearch={true}/>
 

@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Text, View, TouchableOpacity, FlatList, ScrollView, StyleSheet } from 'react-native'
 import { AntDesign, Ionicons, FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native'
 import BarHelper from '../components/BarHelper'
 import Button from '../components/Button'
 import TopBar from '../components/TopBar'
-import userData from '../context/UserContext';
+// import userData from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
+
 
 const Dashboard = ({navigation, route}) => {
-
-    console.log({userData})
-    const user = useContext(userData)
-
-    console.log({user})
+    const {user, setUser, subbag, setSubbag} = useContext(UserContext)
 
   return (
     <ScrollView>
         <Container>
-            <TopBar />
+            <TopBar user={user} subbag={subbag}/>
             <BarHelper />
 
             <ProfileWrap>
                 <Title>Dashboard</Title>
-                <Text style={{fontWeight:'400', color:'#9696A0'}}>Welcome, John Smith</Text>
+                <Text style={{fontWeight:'400', color:'#9696A0'}}>
+                    Welcome, {user[subbag]?.user_detail?.name}
+                </Text>
             </ProfileWrap>
 
             <MenuBoxes>
@@ -99,7 +99,7 @@ const OptionText = styled.Text`
 
 const ProfileWrap = styled.View`
     width: 90%;
-    margin-bottom: 40%;
+    margin-bottom: 40px;
 `
 
 // const styles = StyleSheet.create
