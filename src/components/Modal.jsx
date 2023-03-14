@@ -7,7 +7,7 @@ const Modal = ({open, setIsOpen, isBackgroundClick, children}) => {
   return (
     <Overlay 
       activeOpacity='3.0'
-      onPress={isBackgroundClick? () => setIsOpen(!open) : null}
+      onPress={isBackgroundClick? () => setIsOpen(!open) : null} 
     >
       <ModalContainer 
         onPress={(e) => e.stopPropagation()} 
