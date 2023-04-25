@@ -127,9 +127,8 @@ const Login = ({navigation}) => {
   return (
     <Container>
       <ImageContainer>
-        <Image 
+        <Logo 
           source={require('../../assets/logo1.png')}
-          style={{ height: '90%', width: '70%', marginTop:'30px', marginBottom:'30px'}}
           resizeMode='cover'
         />
       </ImageContainer>
@@ -304,6 +303,13 @@ const ChooseCon = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
   margin: 10px 5px 8px 0;
+`
+
+const Logo = styled.Image`
+  height: 90%;
+  width: 70%;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `
 
 export default Login
