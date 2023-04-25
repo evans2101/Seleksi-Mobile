@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react'
-import { View } from 'react-native'
-import { useRoute } from '@react-navigation/native';
+import React from 'react'
+// import { View } from 'react-native'
+// import { useRoute } from '@react-navigation/native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import Information from '../pages/Information';
+// import Information from '../pages/Information';
 import Artikel from '../pages/Artikel';
-import TestCards from '../pages/TestCards';
+// import TestCards from '../pages/TestCards';
 import Test from '../pages/Test';
 import Profile from '../pages/Profile';
-import Dashboard from '../pages/Dashboard';
+// import Dashboard from '../pages/Dashboard';
 import BottomTabs from './BottomTabs';
+
+// 1,2,3,4,5,6,7,8,9
+// const data = useState[3]
 
 const Stack = createNativeStackNavigator()
 
