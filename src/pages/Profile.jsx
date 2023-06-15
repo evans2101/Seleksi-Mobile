@@ -4,7 +4,7 @@ import { Input } from "native-base";
 import { AntDesign } from '@expo/vector-icons';
 import styled from 'styled-components/native'
 import Button from '../components/Button'
-
+ 
 const Profile = () => {
 
   return (
